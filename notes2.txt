@@ -1,0 +1,23 @@
+- Create virtial environment called virt:  virtualenv virt
+- Go to that folder:  cd .\virt\
+- Activate environment:  .\Scripts\activate
+- Go to main folder:  cd ..\\
+- Install flask:  pip install flask
+- Install psycopg2:  pip install psycopg2 (this is needed for Postgres database)
+- Install psycopg2-binary:  pip install psycopg2-binary
+- Install flask-sqlalchemy
+- Install gunicorn:  pip install gunicorn
+
+Start building your website.
+Go into pgadmin4 (Postgres workbench program).  Create a new database.  I created a database named lexus for this program.
+maybe this worked:
+    * type in python to get to the python terminal
+    *from app import app, db
+    *app.app_context().push()
+    *db.create_all()
+
+
+PUSH VSCODE TO GitHub:
+- 
+
+

@@ -1,3 +1,6 @@
+Good video for deploying to Render:  https://www.youtube.com/watch?v=IBfj_0Zf2Mo
+- 
+
 - Create virtial environment called virt:  virtualenv virt
 - Go to that folder:  cd .\virt\
 - Activate environment:  .\Scripts\activate
@@ -19,5 +22,7 @@ maybe this worked:
 
 PUSH VSCODE TO GitHub:
 - 
+
+
 
 

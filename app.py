@@ -3,16 +3,17 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-#ENV = 'prod'
-ENV = 'dev'
+ENV = 'prod'
+#ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:ert33MNB@localhost/lexus'
-
 else:
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://zirttrbffmhloz:339ab0e6aea18db86a4fa458b520179730e285ce522efa7f88715f6a2cbc6066@ec2-3-208-74-199.compute-1.amazonaws.com:5432/datjvvm56fr58q'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://zirttrbffmhloz:339ab0e6aea18db86a4fa458b520179730e285ce522efa7f88715f6a2cbc6066@ec2-3-208-74-199.compute-1.amazonaws.com:5432/datjvvm56fr58q'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://jackson_inventory_user:AjssKyOevzJkzP0GrjZu7OQ9SUkoSneX@dpg-chb67f2k728tp9c87hsg-a.oregon-postgres.render.com/jackson_inventory'
+    #postgres://jackson_inventory_user:AjssKyOevzJkzP0GrjZu7OQ9SUkoSneX@dpg-chb67f2k728tp9c87hsg-a.oregon-postgres.render.com/jackson_inventory
 
 app.config['SQLALCHECMY_TRACK_MODIFICATIONS'] = False
 

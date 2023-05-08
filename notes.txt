@@ -30,8 +30,9 @@ USE BOOTSTRAP for formatting options (buttons, forms, messages, etc)
 To send changes to GitHub
     - set up vs code to talk with GitHub (watch video linked above)...also the code you need is from codemy.com/git
     - from bash prompt:
+        - git init
         - git add .
-        - git commit -am 'changed (filename)' (OR JUST type in a note like 'tweaked code to add something')
+        - git commit -m 'changed (filename)' (OR JUST type in a note like 'tweaked code to add something')
         - git push
 
 To connect to GitHub user.name and user.email:  

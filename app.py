@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 
 ENV = 'prod'
 #ENV = 'dev'
+app.config['SECRET_KEY'] = "my super secret key"
 
 if ENV == 'dev':
     app.debug = True
@@ -33,10 +37,54 @@ class Feedback(db.Model):
         self.rating = rating
         self.comments = comments
 
+# Create a Blog Post Model
+class Items(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    barcode = db.Column(db.String(100), nullable=False, unique=True)
+    name = db.Column(db.String(250), nullable=False)
+    category = db.Column(db.String(150))
+    minqty = db.Column(db.Integer)
+    ohqty = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<barcode %r>' % self.barcode
+
+class ItemForm(FlaskForm):
+    barcode = StringField("barcode", validators=[DataRequired()])
+    name = StringField("name", validators=[DataRequired()])
+    category = StringField("category")
+    minqty = StringField("minqty")
+    ohqty = StringField("ohqty")
+    submit = SubmitField("Submit")
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/addinv')
+def addinv():
+    return render_template('addinv.html')
+
+#ADD database record
+@app.route('/addtodb', methods=['GET', 'POST'])
+def addtodb():
+    barcode = None
+    form = ItemForm()
+    if form.validate_on_submit():
+        item = Items.query.filter_by(barcode=form.barcode.data).first()
+        if item is None:
+            item = Items(barcode = form.barcode.data, name=form.name.data, category = form.category.data, minqty = form.minqty.data, ohqty = form.ohqty.data)
+            db.session.add(item)
+            db.session.commit()
+        barcode = form.barcode.data
+        form.barcode.data = ''
+        form.name.data = ''
+        form.category.data = ''
+        form.minqty.data = ''
+        form.ohqty.data = ''
+    our_items = Items.query.order_by(Items.name)
+    return render_template("addtodb.html", form = form, barcode=barcode, our_items = our_items)
 
 @app.route('/submit', methods=['POST'])
 def submit():

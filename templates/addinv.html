@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>Add Inv</title>
+    <link rel="stylesheet" href="/static/styles/addinvstyle.css">
+    <script type="text/javascript" src="/static/scripts/scripts.js"></script>
+</head>
+<body>
+	<div id="header">
+		<a href="index.html">
+            <img src="/static/images/grocery_bag_cartoon.jfif" alt="Header Image">
+        </a>
+		Add Inventory
+	</div>
+
+    <div id="content">
+	<form name="submit-to-google-sheet">
+            <div >
+            <label for="barcode">Barcode:</label><br>
+            <input type="text" id="barcode" name="barcode" oninput="addProduct()"><br>
+
+            <input type="hidden" id="ProductBarcode" name="ProductBarcode" readonly>
+            <br>
+            <label for="ProductName">Product Name:</label><br>
+            <textarea class="addinvprodname" type="text" id="ProductName" name="ProductName" readonly>
+                </textarea>
+            <br>
+            <input type="hidden" id="ProductQty" name="ProductQty" readonly><br>
+            <img src="" id="product-image" alt="">
+        </div>
+    </div>
+    </form>
+</body>
+</html>

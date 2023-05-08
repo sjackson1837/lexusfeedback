@@ -1,0 +1,27 @@
+<form method="POST">
+  {{ form.hidden_tag() }}
+    <fieldset>
+      <legend>Add to DB</legend>
+      <div class="form-control">
+        {{ form.barcode.label(class="form-label") }}
+        {{ form.barcode(class="form-control") }}
+        <br/><br/>
+        {{ form.name.label(class="form-label") }}
+        {{ form.name(class="form-control") }}
+        <br/><br/>
+        {{ form.category.label(class="form-label") }}
+        {{ form.category(class="form-control") }}
+        <br/><br/>
+        {{ form.minqty.label(class="form-label") }}
+        {{ form.minqty(class="form-control") }}
+        <br/><br/>
+        {{ form.ohqty.label(class="form-label") }}
+        {{ form.ohqty(class="form-control") }}
+        <br/><br/>
+        {{ form.submit(class="btn btn-secondary") }}
+        <!-- <input type="barcode" id="barcode" placeholder="Enter barcode" required /> -->
+      </div>
+      </fieldset>       
+</form>
+
+<br/><br/><br/>

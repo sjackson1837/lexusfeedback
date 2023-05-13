@@ -19,6 +19,13 @@ maybe this worked:
     *app.app_context().push()
     *db.create_all()
 
+Another way to create datbase:
+    - in the terminal type 'flask shell'
+    - you'll get double arrows:  >>
+    - type 'from app import db'
+    - type 'db.create_all()'
+    - check to see if the database was created.
+
 
 PUSH VSCODE TO GitHub:
 - git init 

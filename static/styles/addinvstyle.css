@@ -40,7 +40,7 @@ body {
     line-height: 2.5rem;
     color: white;
           background-image: linear-gradient(rgba(0, 0, 0, 0.75), 
-                      rgba(0, 0, 0, 0.75)), url(../images/pantry.JPG);
+                      rgba(0, 0, 0, 0.75)), url(/static/images/pantry.JPG);
           background-size: auto;
           background-position: center;
   }

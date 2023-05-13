@@ -3,12 +3,14 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<title>Add Inv</title>
-    <link rel="stylesheet" href="static/styles/addinvstyle.css">
-    <script type="text/javascript" src="static/scripts/scripts.js"></script>
+    <link rel="stylesheet" href="/static/styles/addinvstyle.css">
+    <script type="text/javascript" src="/static/scripts/scripts.js"></script>
 </head>
 <body>
 	<div id="header">
-            <img src="static/images/grocery_bag_cartoon.jfif" alt="Header Image" cursor="pointer" onclick="window.location.href='{{url_for('index')}}';">
+		<a href="index.html">
+            <img src="/static/images/grocery_bag_cartoon.jfif" alt="Header Image">
+        </a>
 		Add Inventory
 	</div>
 
@@ -18,22 +20,13 @@
             <label for="barcode">Barcode:</label><br>
             <input type="text" id="barcode" name="barcode" oninput="addProduct()"><br>
 
-            <label for="quantity">Quantity:</label>
-            <div class="number-input">
-              <button onclick="decrease()">-</button>
-              <input type="number" id="quantity" name="quantity" >
-              <button onclick="increase()">+</button>
-            </div>
-            
-
-
             <input type="hidden" id="ProductBarcode" name="ProductBarcode" readonly>
             <br>
-            <label for="name">Product Name:</label><br>
+            <label for="ProductName">Product Name:</label><br>
             <textarea class="addinvprodname" type="text" id="name" name="name" readonly>
                 </textarea>
             <br>
-            <!-- <input type="hidden" id="ProductQty" name="ProductQty" readonly><br> -->
+            <input type="hidden" id="ProductQty" name="ProductQty" readonly><br>
             <img src="" id="product-image" alt="">
         </div>
     </div>

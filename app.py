@@ -6,8 +6,8 @@ from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 
-ENV = 'prod'
-#ENV = 'dev'
+#ENV = 'prod'
+ENV = 'dev'
 app.config['SECRET_KEY'] = "my super secret key"
 
 if ENV == 'dev':
@@ -66,6 +66,8 @@ def index():
 def addinv():
     return render_template('addinv.html')
 
+
+
 #ADD database record
 @app.route('/addtodb', methods=['GET', 'POST'])
 def addtodb():
@@ -85,6 +87,23 @@ def addtodb():
         form.ohqty.data = ''
     our_items = Items.query.order_by(Items.name)
     return render_template("addtodb.html", form = form, barcode=barcode, our_items = our_items)
+
+@app.route('/add_inv', methods=['POST'])
+def add_inv():
+    barcode = request.form['barcode']
+    name = request.form['name']
+    category = request.form['category']
+    ohqty = request.form['ohqty']
+    minqty = request.form['minqty']
+    # extract the image URL from the form data
+    #image_url = ...
+
+    # create a new Item object and add it to the database
+    item = Items(barcode=barcode, name=name, category=category, ohqty=ohqty, minqty=minqty)
+    db.session.add(item)
+    db.session.commit()
+
+    return 'Item added to database'
 
 @app.route('/submit', methods=['POST'])
 def submit():

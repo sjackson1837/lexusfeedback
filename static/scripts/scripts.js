@@ -14,10 +14,23 @@ async function addProduct() {
     console.log(ProductBarcode, "   ", ProductName, "   ", productImage)
 
     document.getElementById("barcode").textContent = ProductBarcode;
-    document.getElementById("ProductName").textContent = ProductName;
+    document.getElementById("name").textContent = ProductName;
     //document.getElementById("productDescription").textContent = productDescription;
     document.getElementById("product-image").src = productImage;
+    console.log(ProductBarcode);
+    console.log(ProductName);
+    console.log(productImage);
   } catch (error) {
     console.error(error);
   }
 }
+
+
+function increase() {
+  document.getElementById('quantity').stepUp();
+}
+
+function decrease() {
+  document.getElementById('quantity').stepDown();
+}
+

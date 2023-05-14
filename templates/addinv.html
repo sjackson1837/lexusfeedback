@@ -19,12 +19,13 @@
                 <label for="barcode">Barcode:</label><br>
                 <input type="text" id="barcode" name="barcode" oninput="addProduct()"><br>
 
-                <input type="hidden" id="ProductBarcode" name="ProductBarcode" readonly>
+                <input hidden="True" id="ProductBarcode" name="ProductBarcode" readonly>
+                <textarea hidden="True"  type="text" id="imgurl" name="imgurl" readonly></textarea>
                 <br>
                 <label for="ProductName">Product Name:</label><br>
-                <textarea class="addinvprodname" type="text" id="name" name="name" readonly>
-                </textarea><br/>
-                <img src="" id="product-image" alt="">
+                <textarea class="addinvprodname"  type="text" id="name" name="name" readonly></textarea><br/>
+                
+                <img src="" id="imgurl_pic" name="imgurl_pic" alt="">
                 <br/>
                 <label for="category">Category:</label><br/>
                 <input id="category" name="category"><br/>

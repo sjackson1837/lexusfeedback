@@ -6,8 +6,8 @@ from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 
-ENV = 'prod'
-#ENV = 'dev'
+#ENV = 'prod'
+ENV = 'dev'
 app.config['SECRET_KEY'] = "my super secret key"
 
 if ENV == 'dev':
@@ -45,7 +45,7 @@ class Items(db.Model):
     category = db.Column(db.String(150))
     minqty = db.Column(db.Integer)
     ohqty = db.Column(db.Integer)
-    img_url = db.Column(db.String(250))
+    imgurl = db.Column(db.String(250))
 
     def __repr__(self):
         return '<barcode %r>' % self.barcode
@@ -56,7 +56,7 @@ class ItemForm(FlaskForm):
     category = StringField("category")
     minqty = StringField("minqty")
     ohqty = StringField("ohqty")
-    img_url = StringField("img_url")
+    imgurl = StringField("imgurl")
     submit = SubmitField("Submit")
 
 
@@ -78,7 +78,7 @@ def addtodb():
     if form.validate_on_submit():
         item = Items.query.filter_by(barcode=form.barcode.data).first()
         if item is None:
-            item = Items(barcode = form.barcode.data, name=form.name.data, category = form.category.data, minqty = form.minqty.data, ohqty = form.ohqty.data, img_url=form.img_url.data)
+            item = Items(barcode = form.barcode.data, name=form.name.data, category = form.category.data, minqty = form.minqty.data, ohqty = form.ohqty.data, imgurl=form.imgurl.data)
             db.session.add(item)
             db.session.commit()
         barcode = form.barcode.data
@@ -87,7 +87,7 @@ def addtodb():
         form.category.data = ''
         form.minqty.data = ''
         form.ohqty.data = ''
-        form.img_url = ''
+        form.imgurl = ''
     our_items = Items.query.order_by(Items.name)
     return render_template("addtodb.html", form = form, barcode=barcode, our_items = our_items)
 
@@ -98,12 +98,15 @@ def add_inv():
     category = request.form['category']
     ohqty = request.form['ohqty']
     minqty = request.form['minqty']
-    image_url = request.form['img_url']
+    imgurl = request.form['imgurl']
+    print (imgurl)
+
+    #imgurl = "http://www.test.com"
     # extract the image URL from the form data
     #image_url = ...
 
     # create a new Item object and add it to the database
-    item = Items(barcode=barcode, name=name, category=category, ohqty=ohqty, minqty=minqty, img_url=img_url)
+    item = Items(barcode=barcode, name=name, category=category, ohqty=ohqty, minqty=minqty, imgurl=imgurl)
     db.session.add(item)
     db.session.commit()
 

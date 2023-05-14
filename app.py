@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
+from flask_migrate import Migrate
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 
@@ -22,6 +23,7 @@ else:
 app.config['SQLALCHECMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class Feedback(db.Model):
     __tablename__ = 'feedback'
@@ -45,6 +47,7 @@ class Items(db.Model):
     category = db.Column(db.String(150))
     minqty = db.Column(db.Integer)
     ohqty = db.Column(db.Integer)
+    img_url = db.Column(db.String(250))
 
     def __repr__(self):
         return '<barcode %r>' % self.barcode
@@ -55,6 +58,7 @@ class ItemForm(FlaskForm):
     category = StringField("category")
     minqty = StringField("minqty")
     ohqty = StringField("ohqty")
+    img_url = StringField("img_url")
     submit = SubmitField("Submit")
 
 
@@ -76,7 +80,7 @@ def addtodb():
     if form.validate_on_submit():
         item = Items.query.filter_by(barcode=form.barcode.data).first()
         if item is None:
-            item = Items(barcode = form.barcode.data, name=form.name.data, category = form.category.data, minqty = form.minqty.data, ohqty = form.ohqty.data)
+            item = Items(barcode = form.barcode.data, name=form.name.data, category = form.category.data, minqty = form.minqty.data, ohqty = form.ohqty.data, img_url=form.img_url.data)
             db.session.add(item)
             db.session.commit()
         barcode = form.barcode.data
@@ -85,6 +89,7 @@ def addtodb():
         form.category.data = ''
         form.minqty.data = ''
         form.ohqty.data = ''
+        form.img_url = ''
     our_items = Items.query.order_by(Items.name)
     return render_template("addtodb.html", form = form, barcode=barcode, our_items = our_items)
 
@@ -95,15 +100,23 @@ def add_inv():
     category = request.form['category']
     ohqty = request.form['ohqty']
     minqty = request.form['minqty']
+    image_url = request.form['img_url']
     # extract the image URL from the form data
     #image_url = ...
 
     # create a new Item object and add it to the database
-    item = Items(barcode=barcode, name=name, category=category, ohqty=ohqty, minqty=minqty)
+    item = Items(barcode=barcode, name=name, category=category, ohqty=ohqty, minqty=minqty, img_url=img_url)
     db.session.add(item)
     db.session.commit()
 
     return 'Item added to database'
+
+@app.route('/list_inv')
+def list_inv():
+    #Grab all of the items from the database
+    items = Items.query.order_by(Items.category)
+    return render_template("list_inv.html", items=items)
+
 
 @app.route('/submit', methods=['POST'])
 def submit():

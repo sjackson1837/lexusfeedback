@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory List</title>
+    <style>
+        /* Set the font size and line height for the whole document */
+        html {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+        }
+
+        /* Style the container */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Style the table */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 0.5rem;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        /* Style the first row */
+        tr:first-child {
+            font-weight: bold;
+        }
+
+        /* Style the second row */
+        tr:nth-child(2) {
+            border-top: 1px solid #ddd;
+        }
+
+        /* Align the ohqty and minqty cells to the right */
+        td:nth-child(2), td:nth-child(4) {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Inventory List</h1>
+    </header>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>ohqty</th>
+                    <th>Category</th>
+                    <th>minqty</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.ohqty }}</td><br/>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.minqty }}</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><hr></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

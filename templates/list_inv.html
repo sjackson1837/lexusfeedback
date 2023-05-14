@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product List</title>
+	<link rel="stylesheet" type="text/css" href="static/scripts/style_img.css">
+</head>
+<body>
+    {% for item in items %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="product">
+					<div class="image">
+						<img src="{{ item.img_url }}" alt="Product Image">
+					</div>
+					<div class="details">
+						<h4 class="title">{{ item.name }}</h4>
+						<p class="description">{{ item.ohqty }}</p>
+                        <p class="category">{{ item.category }}</p>
+						<p class="ohqty">{{ item.minqty }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    {% endfor %}
+</body>
+</html>

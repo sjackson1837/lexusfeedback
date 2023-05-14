@@ -8,11 +8,10 @@
 </head>
 <body>
     <div id="header">
-        <a href="index.html">
-            <img src="/static/images/grocery_bag_cartoon.jfif" alt="Header Image">
-        </a>
-        Add Inventory
-    </div>
+        <img src="static/images/grocery_bag_cartoon.jfif" alt="Header Image" cursor="pointer" onclick="window.location.href='{{url_for('index')}}';">
+    Add Inventory
+</div>
+
 
     <div id="content">
         <form action="/add_inv" method="POST">

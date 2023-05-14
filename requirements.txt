@@ -14,7 +14,6 @@ distlib==0.3.6
 Django==3.2.19
 filelock==3.11.0
 Flask==2.2.5
-Flask-Migrate==3.1.0
 Flask-SQLAlchemy==3.0.3
 Flask-WTF==1.1.1
 fonttools==4.38.0

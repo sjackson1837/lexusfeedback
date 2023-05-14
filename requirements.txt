@@ -11,7 +11,7 @@ customtkinter==5.1.2
 cycler==0.11.0
 darkdetect==0.8.0
 distlib==0.3.6
-Django==4.2
+Django==3.2.19
 filelock==3.11.0
 Flask==2.2.5
 Flask-Migrate==4.0.4

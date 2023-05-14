@@ -31,7 +31,6 @@ kiwisolver==1.4.4
 Mako==1.2.4
 MarkupSafe==2.1.2
 nltk==3.8.1
-numpy==1.24.2
 oauthlib==3.2.2
 packaging==23.0
 pandas==1.5.3

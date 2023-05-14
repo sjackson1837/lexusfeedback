@@ -6,8 +6,8 @@ from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 
-#ENV = 'prod'
-ENV = 'dev'
+ENV = 'prod'
+#ENV = 'dev'
 app.config['SECRET_KEY'] = "my super secret key"
 
 if ENV == 'dev':
